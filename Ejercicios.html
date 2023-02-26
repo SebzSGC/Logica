@@ -51,25 +51,81 @@
     // ocultaran en caso de que tengan un valor diferente y quedan visibles en caso de
     // que sean iguales.
 
-    function Concentrese(f1, c1, f2, c2) {
-        let matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-        let matriz2 = [["*", "*", "*"], ["*", "*", "*"], ["*", "*", "*"]]
-        let puntos = 0
+    let matriz = [
+        [2, 3, 5, 1 ],
+        [8, 6, 8, 9 ],
+        [5, 3, 7,10 ],
+        [9, 2, 6, 10],
+        [7, 4, 1, 4 ],
+    ]
 
-        do {
-            console.log(matriz2)
-            carta1 = matriz[f1][c1];
-            carta2 = matriz[f2][c2];
-            if (carta1 == carta2) {
-                puntos++
-                matriz2[f1][c1] = carta1
-                matriz2[f2][c2] = carta2
-                console.log("Has descubierto los siguientes numeros :")
-                console.log(matriz2)
+    let matriz2 = [
+        ["?", "?", "?", "?"],
+        ["?", "?", "?", "?"],
+        ["?", "?", "?", "?"],
+        ["?", "?", "?", "?"],
+        ["?", "?", "?", "?"],
+    ]
+    let puntos = 0
+    
+    do {
+        console.log("Concentrese")
+        console.table(matriz2)
+        let f1, c1, f2, c2,carta1, carta2
+        let Nvalido = false
+        while (Nvalido === false) {
+            f1 = prompt("Ingrese la fila de la primera carta")
+            c1 = prompt("Ingrese la columna de la primera carta")
+            if (f1 < 0 || f1 >= matriz.length - 1 && c1 < 0 || c1 >= matriz.length - 1) {
+                alert("La posicion de la primera carta no está dentro del concentrese, porfavor ingrese otra posicion")
+            } else {
+                Nvalido = true;
             }
-            console.log(matriz)
-        } while (puntos == 10)
-    }
+        }
+        Nvalido = false
+        while (Nvalido === false) {
+            f2 = prompt("Ingrese la fila de la segunda carta")
+            c2 = prompt("Ingrese la columna de la segunda carta")
+            if (f2 < 0 || f2 >= matriz.length - 1 && c2 < 0 || c2 >= matriz.length - 1) {
+                alert("La posicion de la segunda carta no está dentro del concentrese, porfavor ingrese otra posicion")
+            } else {
+                Nvalido = true;
+            }
+        }
+        console.clear()
+        carta1 = matriz[f1][c1];
+        carta2 = matriz[f2][c2];
+        if(matriz2[f1][c1]==carta1 && matriz2[f2][c2]==carta2){
+            puntos--
+            console.log("Las cartas elegidas ya estan descubiertas")
+        }
+        
+        if (carta1 == carta2) {
+            puntos++
+            matriz2[f1][c1] = carta1
+            matriz2[f2][c2] = carta2
+            matriz2 = matriz2
+            console.log("Felicidades, pareja encontrada")
+            console.log("Cartas elegidas: ")
+            console.table(matriz2)
+            console.log("Tus puntos hasta el momento son: " + puntos)
+        } else {
+            puntos = puntos
+            matriz2[f1][c1] = carta1
+            matriz2[f2][c2] = carta2
+            matriz2 = matriz2
+            console.log("Cartas elegidas: ")
+            console.table(matriz2)
+            console.log("No descubriste ningun numero, sigue intentado, llevas: "+puntos+" puntos")
+            alert("La pareja elegida no coinciden")
+            if (f1 >= 0 && f1 < matriz.length - 1 && c1 >= 0 && c1 < matriz.length - 1 && f2 >= 0 && f2 < matriz.length - 1 && c2 >= 0 && c2 < matriz.length - 1) {
+                matriz2[f1][c1] = "?"
+                matriz2[f2][c2] = "?"
+            } 
+        }
+
+    } while (puntos < 10)
+    alert("Felicidades!!, descubriste todas las parejas")
 
     // 6. Diseñe un algoritmo que tome dos vectores de 8 elementos y los imprima en una
     // matriz de la siguiente manera:
