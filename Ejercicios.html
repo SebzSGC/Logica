@@ -52,11 +52,11 @@
     // que sean iguales.
 
     let matriz = [
-        [2, 3, 5, 1 ],
-        [8, 6, 8, 9 ],
-        [5, 3, 7,10 ],
+        [2, 3, 5, 1],
+        [8, 6, 8, 9],
+        [5, 3, 7, 10],
         [9, 2, 6, 10],
-        [7, 4, 1, 4 ],
+        [7, 4, 1, 4],
     ]
 
     let matriz2 = [
@@ -67,11 +67,11 @@
         ["?", "?", "?", "?"],
     ]
     let puntos = 0
-    
+
     do {
         console.log("Concentrese")
         console.table(matriz2)
-        let f1, c1, f2, c2,carta1, carta2
+        let f1, c1, f2, c2, carta1, carta2
         let Nvalido = false
         while (Nvalido === false) {
             f1 = prompt("Ingrese la fila de la primera carta")
@@ -95,11 +95,11 @@
         console.clear()
         carta1 = matriz[f1][c1];
         carta2 = matriz[f2][c2];
-        if(matriz2[f1][c1]==carta1 && matriz2[f2][c2]==carta2){
+        if (matriz2[f1][c1] == carta1 && matriz2[f2][c2] == carta2) {
             puntos--
             console.log("Las cartas elegidas ya estan descubiertas")
         }
-        
+
         if (carta1 == carta2) {
             puntos++
             matriz2[f1][c1] = carta1
@@ -116,12 +116,12 @@
             matriz2 = matriz2
             console.log("Cartas elegidas: ")
             console.table(matriz2)
-            console.log("No descubriste ningun numero, sigue intentado, llevas: "+puntos+" puntos")
+            console.log("No descubriste ningun numero, sigue intentado, llevas: " + puntos + " puntos")
             alert("La pareja elegida no coinciden")
             if (f1 >= 0 && f1 < matriz.length - 1 && c1 >= 0 && c1 < matriz.length - 1 && f2 >= 0 && f2 < matriz.length - 1 && c2 >= 0 && c2 < matriz.length - 1) {
                 matriz2[f1][c1] = "?"
                 matriz2[f2][c2] = "?"
-            } 
+            }
         }
 
     } while (puntos < 10)
@@ -457,6 +457,94 @@
         return console.log(menorAmayor(vec1) + "," + MayorAmenor(vec2))
     }
 
+    //     18. Cree un algoritmo que lea dos parámetros, correspondientes a dos
+    // matrices. La función debe efectuar la suma de dichas matrices e imprimir la
+    // matriz resultante. En caso de que las matrices no puedan ser sumadas, el
+    // mensaje de error que se debe mostrar es "No se pueden sumar estas matrices"
+
+    function SumaMatrices(matriz1, matriz2) {
+        function SumaMatrices(matriz1, matriz2) {
+            let matrizSumada = []
+            let suma = 0
+            if (matriz1.length == matriz2.length) {
+                for (let f = 0; f < matriz1.length; f++) {
+                    suma = 0
+                    matrizSumada[f] = []
+                    for (let c = 0; c < matriz1[0].length; c++) {
+                        suma = matriz1[f][c] + matriz2[f][c]
+                        matrizSumada[f][c] = suma
+
+                    }
+                }
+                return console.log(matrizSumada)
+            }
+            return console.log("No se pueden sumar estas matrices")
+        }
+    }
+
+    // 19. Cree un algoritmo, que lea una vector con una cantidad desconocida de
+    // elementos (Todos numéricos), dichos elementos corresponden a las
+    // temperaturas de los últimos días en alguna ciudad. El algoritmo debe calcular
+    // la temperatura promedio, si la temperatura promedio es por lo menos 25.6,debe imprimir por pantalla "Calor", 
+    // en caso contrario, imprima por pantalla "Frio".
+
+    function temperatura(array) {
+        let promedio = 0
+        let suma = 0
+        for (let i = 0; i < array.length; i++) {
+            suma = suma + array[i]
+        }
+        promedio = suma / array.length
+        promedio = parseFloat(promedio.toFixed(1))
+        if (promedio >= 25.6) {
+            console.log("Calor")
+        } else {
+            console.log("Frio")
+        }
+    }
+
+    // 20. En una matriz C de 24 x 6 se encuentran almacenadas las calificaciones de 6
+    // materias de un grupo de 24 estudiantes. Elaborar un algoritmo que nos permita
+    // calcular e imprimir los siguiente:
+    // La nota promedio de cada estudiante
+    // El número de estudiantes que aprobaron cada materia
+    // El número de estudiantes que reprobaron cada materia
+    // La nota promedio de cada materia
+
+    function NotasEstudiantes(){
+    let matriz = []
+    for (let i = 0; i < 24; i++) {
+        matriz[i] = []
+        for (let j = 0; j < 6; j++) {
+            matriz[i][j] = Math.floor(Math.random() * 6)
+        }
+    }
+    console.log(matriz)
+    for (let i = 0; i < 24; i++) {
+        let promedio = 0
+        for (let j = 0; j < 6; j++) {
+            promedio += matriz[i][j]
+        }
+        promedio /= 6
+        promedio = parseFloat(promedio.toFixed(1))
+        console.log("el promedio del estudiante " + (i + 1) + " es " + promedio)
+    }
+    for (let j = 0; j < 6; j++) {
+        let conteoPerdidas = 0
+        let promedio = 0
+        for (let i = 0; i < 24; i++) {
+            if (matriz[i][j] < 3) {
+                conteoPerdidas++
+            }
+            promedio += matriz[i][j]
+        }
+        promedio /= 24
+        console.log("<---------------------------->")
+        console.log("el numero de estudiantes que pierden la materia  " + (j + 1) + " es " + conteoPerdidas)
+        console.log("el numero de estudiantes que ganan la materia  " + (j + 1) + " es " + (24 - conteoPerdidas))
+        console.log("el promedio de la materia  " + (j + 1) + " es " + promedio)
+    }
+}
 
 </script>
 
