@@ -1,7 +1,3 @@
-<html>
-<script>
-
-
     // 1.Diseñe un algoritmo que lea un vector de N elementos e imprima los números pares.
     function Pares(array) {
         for (let i = 0; i < array.length; i++) {
@@ -545,7 +541,3 @@
         console.log("el promedio de la materia  " + (j + 1) + " es " + promedio)
     }
 }
-
-</script>
-
-</html>
